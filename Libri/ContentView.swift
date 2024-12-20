@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var tab = 1
     @State private var showingsheet = false
     @State private var selectedbook: UUID? = nil
+    @Environment(\.colorScheme) var colorScheme
     
     /* Things i copied from Hackingwithswift... :
      init() {
@@ -141,6 +142,7 @@ struct ContentView: View {
                                 .frame(width: 150, height: 225).onTapGesture {
                                     showingsheet.toggle()
                                     selectedbook = Hobbit.id
+                                    
                                 }
                             Text(Hobbit.name)
                                 .font(.caption)
@@ -242,7 +244,7 @@ struct ContentView: View {
                             Text (HarryPotter.name).font(.system(size: 24, weight: .bold)).colorInvert()
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.leading, 50)
-                                .position(x:100, y:162)
+                                .position(x:90, y:162)
                             // .offset(x:-5)
                             // .offset(y:-220)
                         }
@@ -2335,9 +2337,10 @@ struct ContentView: View {
                     }}
                     
                 }
-                } .background {
-                    Color(red: 245/255, green: 237/255, blue: 226/255)
-                    .edgesIgnoringSafeArea(.all) }
+                } .background(
+                    colorScheme == .dark
+                        ? Color.black // Colore per modalità scura
+                        : Color(red: 245/255, green: 237/255, blue: 226/255))
                 
                 
                 
